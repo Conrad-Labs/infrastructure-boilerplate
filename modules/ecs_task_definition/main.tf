@@ -23,7 +23,12 @@ resource "aws_ecs_task_definition" "ecs_task_def" {
             image = var.docker_image
 
             environment = var.environment_vars
-            secrets     = var.secrets
+            secrets      = [
+            for secret in var.secrets : {
+                name      = secret.name
+                valueFrom = secret.value_from  # Ensure value_from is a string here
+            }
+        ]
             portMappings = [
                 {
                     name = var.container_portname

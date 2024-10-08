@@ -77,13 +77,21 @@ variable "cloudwatch_group" {
 #   type = string
 # }
 
+# variable "secrets" {
+#   type = list(object({
+#     name      = string
+#     value_from = object({
+#       secret_manager_secret_version = string
+#     })
+#   }))
+# }
+
 variable "secrets" {
   type = list(object({
-    name      = string
-    value_from = object({
-      secret_manager_secret_version = string
-    })
+    name       = string
+    value_from = string  # This should be a string (e.g., ARN)
   }))
 }
+
 
 variable "tags" {}

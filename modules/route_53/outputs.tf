@@ -3,6 +3,6 @@ output "route53_zone_id" {
 }
 
 output "record_fqdn" {
-  description = "The FQDN of the DNS record."
-  value       = aws_route53_record.this.fqdn
+  description = "The FQDNs of the Route 53 records."
+  value       = [for record in aws_route53_record.this : record.fqdn]
 }

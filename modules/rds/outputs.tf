@@ -20,3 +20,19 @@ output "rds_username" {
   description = "The username for the RDS PostgreSQL instance."
   value       = aws_db_instance.rds_instance.username
 }
+
+
+# Access the ARN of the RDS password parameter
+output "rds_password_arn" {
+  value = aws_ssm_parameter.rds_password.arn
+}
+
+# Access the ARN of the RDS username parameter
+output "rds_username_arn" {
+  value = aws_ssm_parameter.rds_username.arn
+}
+
+# Access the ARN of the RDS hostname parameter
+output "rds_hostname_arn" {
+  value = aws_ssm_parameter.rds_hostname.arn
+}

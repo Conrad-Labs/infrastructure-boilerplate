@@ -5,7 +5,6 @@ terraform {
       version = ">= 2.7.0"
     }
   }
-
 }
 resource "aws_s3_bucket" "terraform_state" {
   bucket = var.bucket_name  # Use the bucket name provided as a variable

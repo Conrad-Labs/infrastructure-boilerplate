@@ -73,6 +73,11 @@ type        = string
 default = ""
 }
 
+variable "backend_url" {
+  default = ""
+  
+}
+
 variable "tags" {}
 
 variable "codepipeline_role_arn" {

@@ -37,7 +37,7 @@ resource "aws_codepipeline" "pipeline" {
   }
 
   stage {
-    name = "Apply"
+    name = "Build"
 
     action {
       name             = "Build"
@@ -49,7 +49,7 @@ resource "aws_codepipeline" "pipeline" {
       version          = "1"
 
       configuration = {
-        Project = var.codebuild_project_name
+        ProjectName = var.codebuild_project_name
 
         # Conditional environment variables based on pipeline type
         EnvironmentVariables = jsonencode(
@@ -64,7 +64,13 @@ resource "aws_codepipeline" "pipeline" {
                 name  = "DISTRIBUTION_ID"
                 value = var.cloudfront_distribution
                 type  = "PLAINTEXT"
-              }
+              }, 
+              {
+                name  = "VITE_APP_API_URL"
+                value = var.backend_url
+                type  = "PLAINTEXT"
+              },
+
             ] : [],
             var.pipeline_type == "backend" ? [
               {

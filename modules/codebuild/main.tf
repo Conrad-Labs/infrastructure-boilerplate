@@ -13,7 +13,7 @@ resource "aws_codebuild_project" "this" {
   service_role  = var.service_role_arn
 
   artifacts {
-    type = "NO_ARTIFACTS"
+    type = "CODEPIPELINE"
   }
 
   environment {

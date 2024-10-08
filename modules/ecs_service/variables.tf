@@ -18,11 +18,11 @@ variable "desired_count" {
   nullable = false
 }
 
-variable "ecs_namespace" {
-  type = string
-  nullable = true
-  default = null
-}
+# variable "ecs_namespace" {
+#   type = string
+#   nullable = true
+#   default = null
+# }
 
 variable "container_portname" {
   type = string
@@ -74,9 +74,9 @@ variable "container_port" {
   default = 0
 }
 
-variable "service_connect_enable" {
-  type = bool
-  nullable = false
-}
+# variable "service_connect_enable" {
+#   type = bool
+#   nullable = false
+# }
 
 variable "tags" {}

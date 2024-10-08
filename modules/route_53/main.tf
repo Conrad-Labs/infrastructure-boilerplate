@@ -12,17 +12,19 @@ resource "aws_route53_zone" "this" {
 }
 
 resource "aws_route53_record" "this" {
+  for_each = { for rec in var.records : rec.name => rec }
+
   zone_id = aws_route53_zone.this.zone_id
-  name    = var.record_name
+  name    = each.value.name
   type    = "A"
 
-  # Optional: If you want to use CloudFront as an alias target
   alias {
-    name                   = var.alias_name
-    zone_id                = var.alias_zone_id
-    evaluate_target_health = var.evaluate_target_health
+    name                   = each.value.alias_name
+    zone_id                = each.value.alias_zone_id
+    evaluate_target_health = each.value.evaluate_target_health
   }
 }
+
 
 
 
